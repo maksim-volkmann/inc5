@@ -1,0 +1,85 @@
+
+@import url('https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&family=Eater&display=swap');
+
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	background-color: #f4f4f9;
+}
+
+header {
+	background-color: #ffcccb;
+	padding: 20px;
+}
+
+h1 {
+	margin: 0;
+	color: #333;
+	font-family: "Eater", serif;
+	font-weight: 400;
+	font-style: normal;
+}
+
+.gallery {
+	display: flex;
+	margin: auto;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 20px;
+	padding: 20px;
+	max-width: 860px;
+}
+
+.gallery img {
+	width: 400px;
+	height: 400px;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.buttons {
+	margin-top: 20px;
+}
+
+button {
+	font-family: "DynaPuff", system-ui;
+	border: none;
+	padding: 10px 20px;
+	margin: 5px;
+	cursor: pointer;
+	border-radius: 5px;
+	color: white; /* Ensures text is readable on colored buttons */
+}
+
+.btn-blur {
+	background-color: #2ecc71; /* Light red */
+}
+
+.btn-grayscale {
+	background-color: #3498db; /* Light blue */
+}
+
+.btn-brightness {
+	background-color: #9b59b6; /* Light green */
+}
+
+.btn-contrast {
+	background-color: #e74c3c; /* Light yellow */
+}
+
+.btn-reset {
+	background-color: #95a5a6; /* Light gray */
+	color: black; /* Ensures text is readable on gray background */
+}
+
+button:hover {
+	opacity: 0.8; /* Slightly reduce opacity on hover for all buttons */
+}
+
+footer {
+	background-color: #333;
+	color: #fff;
+	padding: 10px;
+}

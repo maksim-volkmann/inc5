@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Cat Gallery</title>
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<header>
+		<h1>Welcome to the Cat Photo Editing Gallery</h1>
+	</header>
+	<main>
+		<div class="gallery">
+			<img src="/images/cat1.jpg" alt="Cat 1">
+			<img src="/images/cat2.jpg" alt="Cat 2">
+			<img src="/images/cat3.jpg" alt="Cat 3">
+			<img src="/images/cat4.jpg" alt="Cat 4">
+		</div>
+		<div class="buttons">
+			<button class="btn-blur" onclick="applyFilter('blur')">Blur</button>
+			<button class="btn-grayscale" onclick="applyFilter('grayscale')">Black & White</button>
+			<button class="btn-brightness" onclick="applyFilter('brightness')">Brightness</button>
+			<button class="btn-contrast" onclick="applyFilter('contrast')">Contrast</button>
+			<button class="btn-reset" onclick="resetFilters()">Reset</button>
+		</div>
+	</main>
+	<footer>
+		<p>&copy; 2024 Cat Lovers</p>
+	</footer>
+
+	<script src="scripts.js"></script>
+</body>
+</html>

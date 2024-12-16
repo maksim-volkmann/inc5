@@ -1,0 +1,141 @@
+services:
+  nginx:
+    build: requirements/nginx/.
+    container_name: nginx
+    depends_on:
+      - wordpress
+      - mariadb
+    ports:
+      - "443:443"
+    volumes:
+      - wp-data:/var/www/html
+      # - /home/mvolkman/data/cats:/var/www/cats
+    networks:
+      - inception_network
+    restart: always
+    environment:
+      - DOMAIN_NAME=${DOMAIN_NAME} # Pass DOMAIN_NAME to the container
+  wordpress:
+    build: requirements/wordpress/.
+    container_name: wp-php
+    volumes:
+      - wp-data:/var/www/html
+    networks:
+      - inception_network
+    secrets:
+      - db_name
+      - db_user
+      - db_pass
+      - db_root_pass
+      - admin_user
+      - admin_pass
+      - admin_email
+    environment:
+      - DOMAIN_NAME=${DOMAIN_NAME}  # Reference the variable from .env
+    restart: always
+  mariadb:
+    build: requirements/mariadb/.
+    container_name: mariadb
+    ports:
+      - "3306:3306"
+    volumes:
+      - db-data:/var/lib/mysql
+    secrets:
+      - db_name
+      - db_user
+      - db_pass
+      - db_root_pass
+    networks:
+      - inception_network
+  ftp:
+    build: requirements/bonus/ftp/.
+    container_name: ftp
+    depends_on:
+      - wordpress
+    secrets:
+      - ftp_user
+      - ftp_pass
+    volumes:
+      - wp-data:/var/www/html
+    ports:
+      - "21:21"
+      - "21100-21110:21100-21110"
+    networks:
+      - inception_network
+    restart: always
+  redis:
+    build: requirements/bonus/redis/.
+    container_name: redis
+    depends_on:
+      - wordpress
+    ports:
+      - "6379:6379"
+    networks:
+      - inception_network
+    restart: always
+  adminer:
+    build: ./requirements/bonus/adminer/.
+    container_name: adminer
+    ports:
+      - "8080:8080"
+    restart: always
+    networks:
+      - inception_network
+  static_cats:
+    build: ./requirements/bonus/static/.
+    container_name: static_cats
+    ports:
+      - "8443:443"
+    networks:
+      - inception_network
+  cadvisor:
+    build:
+      context: ./requirements/bonus/cadvisor
+    container_name: cadvisor
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "8081:8080"
+    restart: always
+    networks:
+      - inception_network
+
+networks:
+  inception_network:
+
+volumes:
+  db-data:
+    name: "db-volume"
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: /home/mvolkman/data/db
+
+  wp-data:
+    name: "wp-volume"
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: /home/mvolkman/data/wp
+
+secrets:
+  db_name:
+    file: ../secrets/db_name.txt
+  db_user:
+    file: ../secrets/db_user.txt
+  db_pass:
+    file: ../secrets/db_pass.txt
+  db_root_pass:
+    file: ../secrets/db_root_pass.txt
+  admin_user:
+    file: ../secrets/admin_user.txt
+  admin_pass:
+    file: ../secrets/admin_pass.txt
+  admin_email:
+    file: ../secrets/admin_email.txt
+  ftp_user:
+    file: ../secrets/ftp_user.txt
+  ftp_pass:
+    file: ../secrets/ftp_pass.txt
