@@ -10,8 +10,9 @@ RUN apt-get update && apt-get install -y \
 	curl \
 	&& apt-get clean
 
+# DELETE 
 # Set the ServerName globally to avoid warnings
-RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+# RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
 # Download Adminer
 RUN wget -O /var/www/html/index.php https://github.com/vrana/adminer/releases/download/v4.8.1/adminer-4.8.1.php

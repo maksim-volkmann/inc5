@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Read secrets from Docker secrets
+# Secrets
 FTP_USER=$(cat /run/secrets/ftp_user)
 FTP_PSW=$(cat /run/secrets/ftp_pass)
 

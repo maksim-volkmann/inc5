@@ -50,32 +50,32 @@ button {
 	margin: 5px;
 	cursor: pointer;
 	border-radius: 5px;
-	color: white; /* Ensures text is readable on colored buttons */
+	color: white;
 }
 
 .btn-blur {
-	background-color: #2ecc71; /* Light red */
+	background-color: #2ecc71;
 }
 
 .btn-grayscale {
-	background-color: #3498db; /* Light blue */
+	background-color: #3498db;
 }
 
 .btn-brightness {
-	background-color: #9b59b6; /* Light green */
+	background-color: #9b59b6;
 }
 
 .btn-contrast {
-	background-color: #e74c3c; /* Light yellow */
+	background-color: #e74c3c;
 }
 
 .btn-reset {
-	background-color: #95a5a6; /* Light gray */
-	color: black; /* Ensures text is readable on gray background */
+	background-color: #95a5a6;
+	color: black;
 }
 
 button:hover {
-	opacity: 0.8; /* Slightly reduce opacity on hover for all buttons */
+	opacity: 0.8;
 }
 
 footer {
